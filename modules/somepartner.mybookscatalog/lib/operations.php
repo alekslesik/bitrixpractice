@@ -27,5 +27,9 @@ if (!$result->isSuccess())
 
 $result = BookTable::delete($id);
 
+$book = \Bitrix\Main\Test\Typography\BookTable::getByPrimary(1)
+   ->fetchObject();
+
+
 
 
