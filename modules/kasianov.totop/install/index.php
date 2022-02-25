@@ -61,7 +61,7 @@ class kasianov_totop extends CModule
    }
 
    /**
-    * Copy files to /bitrix dir
+    * Copy js, css files to /bitrix dir
     * @return bool|void
     */
    public function InstallFiles()
@@ -92,7 +92,6 @@ class kasianov_totop extends CModule
       return false;
    }
 
-
    /**
     * Event registration
     * @return bool|void
@@ -109,6 +108,67 @@ class kasianov_totop extends CModule
 
       return false;
    }
+
+   /**
+    * Uninstall module
+    * @return bool|void
+    */
+   public function DoUninstall()
+   {
+      global $APPLICATION;
+
+      $this->UnInstallFiles();
+      $this->UnInstallDB();
+      $this->UnInstallEvents();
+
+      ModuleManager::unRegisterModule($this->MODULE_ID);
+
+      $APPLICATION->IncludeAdminFile(
+         Loc::getMessage("FALBAR_TOTOP_UNINSTALL_TITLE")." \"".Loc::getMessage("FALBAR_TOTOP_NAME")."\"",
+         __DIR__."/unstep.php"
+      );
+
+      return false;
+   }
+
+   /**
+    * Uninstall js, css files from /bitrix dir
+    */
+   public function UnInstallFiles()
+   {
+      Directory::deleteDirectory(
+         Application::getDocumentRoot() . "/bitrix/js/" . $this->MODULE_ID
+      );
+
+      Directory::deleteDirectory(
+         Application::getDocumentRoot() . "/bitrix/css/" . $this->MODULE_ID
+      );
+
+      return false;
+   }
+
+   /**
+    * Uninstall DB settings
+    */
+   public function UnInstallDB()
+   {
+      Option::delete($this->MODULE_ID);
+      return false;
+   }
+
+   public function UnInstallEvents()
+   {
+      EventManager::getInstance()->unRegisterEventHandler(
+         "main",
+         "OnBeforeEndBufferContent",
+         $this->MODULE_ID,
+         "Kasianov\ToTop\Main",
+         "appendScriptsToPage"
+      );
+
+      return false;
+   }
+
 }
 
 
