@@ -11,7 +11,7 @@ if (!check_bitrix_sessid()) {
 if ($errorException = $APPLICATION->GetException()) {
    echo(CAdminMessage::ShowMessage($errorException->GetString()));
 } else {
-   echo(CAdminMessage::ShowNote(Loc::getMessage("FALBAR_TOTOP_STEP_BEFORE") . " " .
+   echo(CAdminMessage::ShowNote(Loc::getMessage("FALBAR_TOTOP_UNSTEP_BEFORE") . " " .
       Loc::getMessage("FALBAR_TOTOP_STEP_AFTER")));
 }
 
