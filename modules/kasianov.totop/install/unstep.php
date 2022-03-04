@@ -8,16 +8,12 @@ if (!check_bitrix_sessid()) {
    return;
 }
 
-if ($errorException = $APPLICATION->GetException()) {
-   echo(CAdminMessage::ShowMessage($errorException->GetString()));
-} else {
-   echo(CAdminMessage::ShowNote(Loc::getMessage("FALBAR_TOTOP_STEP_BEFORE") . " " .
-      Loc::getMessage("FALBAR_TOTOP_UNSTEP_AFTER")));
-}
+echo(CAdminMessage::ShowNote(Loc::getMessage("FALBAR_TOTOP_UNSTEP_BEFORE") . " " . Loc::getMessage("FALBAR_TOTOP_UNSTEP_AFTER")));
 
 ?>
 
 
-<form action="<? echo($APPLICATION->GetCurPage()) ?>"></form>
-<input type="hidden" name="lang" value="<? echo(LANG) ?> ">
-<input type="submit" value="<? echo(Loc::getMessage("FALBAR_TOTOP_UNSTEP_SUBMIT_BACK")) ?>">
+<form action="<? echo($APPLICATION->GetCurPage()) ?>">
+   <input type="hidden" name="lang" value="<? echo(LANG) ?> ">
+   <input type="submit" value="<? echo(Loc::getMessage("FALBAR_TOTOP_UNSTEP_SUBMIT_BACK")) ?>">
+</form>

@@ -18,6 +18,7 @@ if ($errorException = $APPLICATION->GetException()) {
 ?>
 
 
-<form action="<? echo($APPLICATION->GetCurPage()) ?>"></form>
-<input type="hidden" name="lang" value="<? echo(LANG) ?> ">
-<input type="submit" value="<? echo(Loc::getMessage("FALBAR_TOTOP_STEP_SUBMIT_BACK")) ?>">
+<form action="<? echo($APPLICATION->GetCurPage()) ?>">
+   <input type="hidden" name="lang" value="<? echo(LANG) ?> ">
+   <input type="submit" value="<? echo(Loc::getMessage("FALBAR_TOTOP_STEP_SUBMIT_BACK")) ?>">
+</form>
