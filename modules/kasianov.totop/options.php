@@ -126,4 +126,34 @@ $tabControl->Begin();
 <?
 //конец отрисовки формы
 $tabControl->End();
+
+//код для сохранения настроек
+if ($request->isPost() && check_bitrix_sessid()) {
+
+   foreach ($aTabs as $aTab) {
+
+      foreach ($aTab["OPTIONS"] as $arOption) {
+
+         if (!is_array($arOption)) continue;
+
+         if ($arOption["note"]) continue;
+
+         if ($request["apply"]) {
+            $optionValue = $request->getPost($arOption[0]);
+
+            if ($arOption[0] == "switch_on") {
+               if ($optionValue == "") $optionValue = "N";
+            }
+
+            Option::set($module_id, $arOption[0], is_array($optionValue) ? implode(",", $optionValue) : $optionValue);
+
+         } elseif ($request["default"]) {
+            Option::set($module_id, $arOption[0], $arOption[2]);
+         }
+      }
+   }
+
+   LocalRedirect($APPLICATION->GetCurPage() . "?mid=" . $module_id . "&lang=" . LANG);
+}
+
 ?>
