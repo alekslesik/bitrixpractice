@@ -90,45 +90,8 @@ $aTabs = array(
    )
 );
 
-
-// класс для работы с многостраничными формами
-$tabControl = new CAdminTabControl(
-   "tabControl",
-   $aTabs,
-);
-
-//начало отрисовки формы
-$tabControl->Begin();
-?>
-
-
-<form action="<? echo($APPLICATION->GetCurPage()); ?>?mid=<? echo($module_id); ?> &lang=<? echo(LANG); ?>"
-      method="post">
-
-   <?
-   foreach ($aTabs as $aTab) {
-      if ($aTab["OPTIONS"]) {
-         $tabControl->BeginNextTab();
-         __AdmSettingsDrawList($module_id, $aTab["OPTIONS"]);
-      }
-   }
-   ?>
-
-   <input type="submit" name="apply" value="<? echo(Loc::getMessage("FALBAR_TOTOP_OPTIONS_INPUT_APPLY")); ?>"
-          class="adm-btn-save">
-   <input type="submit" name="default value" value="<? echo(Loc::getMessage("FALBAR_TOTOP_OPTIONS_INPUT_DEFAULT")) ?>">
-
-   <?
-   echo(bitrix_sessid_post())
-   ?>
-</form>
-
-<?
-//конец отрисовки формы
-$tabControl->End();
-
 //код для сохранения настроек
-if ($request->isPost() && check_bitrix_sessid()) {
+if ($isPost = $request->isPost() && $check = check_bitrix_sessid()) {
 
    foreach ($aTabs as $aTab) {
 
@@ -155,5 +118,45 @@ if ($request->isPost() && check_bitrix_sessid()) {
 
    LocalRedirect($APPLICATION->GetCurPage() . "?mid=" . $module_id . "&lang=" . LANG);
 }
+
+// класс для работы с многостраничными формами
+$tabControl = new CAdminTabControl(
+   "tabControl",
+   $aTabs,
+);
+
+//начало отрисовки формы
+$tabControl->Begin();
+?>
+
+<? $curPage = $APPLICATION->GetCurPage() ?>
+
+   <form action="<? echo($APPLICATION->GetCurPage()); ?>?mid=<? echo($module_id); ?>&lang=<? echo(LANG); ?>"
+         method="POST">
+
+      <?
+      foreach ($aTabs as $aTab) {
+         if ($aTab["OPTIONS"]) {
+            $tabControl->BeginNextTab();
+            __AdmSettingsDrawList($module_id, $aTab["OPTIONS"]);
+         }
+      }
+
+      $tabControl->Buttons();
+      ?>
+
+      <input type="submit" name="apply" value="<? echo(Loc::getMessage("FALBAR_TOTOP_OPTIONS_INPUT_APPLY")); ?>"
+             class="adm-btn-save">
+      <input type="submit" name="default"
+             value="<? echo(Loc::getMessage("FALBAR_TOTOP_OPTIONS_INPUT_DEFAULT")) ?>">
+
+      <?
+      echo(bitrix_sessid_post())
+      ?>
+   </form>
+
+<?
+//конец отрисовки формы
+$tabControl->End();
 
 ?>
