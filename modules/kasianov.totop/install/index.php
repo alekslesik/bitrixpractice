@@ -1,10 +1,16 @@
 <?php
 
+//Финальный класс для работы с языковыми файлами
 use Bitrix\Main\Localization\Loc;
+//Регистрация модуля в системе
 use Bitrix\Main\ModuleManager;
+//Класс для работы с параметрами модулей, хранимых в базе данных
 use Bitrix\Main\Config\Option;
+//Класс кратко- и долгосрочной регистрации обработчиков событий
 use Bitrix\Main\EventManager;
+//Абстрактный класс для любых приложений
 use Bitrix\Main\Application;
+//Класс для работы с директориями
 use Bitrix\Main\IO\Directory;
 
 

@@ -1,8 +1,12 @@
 <?php
 
+//Финальный класс для работы с языковыми файлами
 use Bitrix\Main\Localization\Loc;
+//Класс отвечает за обычный http-хит на сайте
 use Bitrix\Main\HttpApplication;
+//Класс для загрузки необходимых файлов, классов и модулей
 use Bitrix\Main\Loader;
+//Класс для работы с параметрами модулей, хранимых в базе данных
 use Bitrix\Main\Config\Option;
 
 Loc::loadMessages("__FILE__");
