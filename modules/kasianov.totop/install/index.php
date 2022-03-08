@@ -73,15 +73,15 @@ class kasianov_totop extends CModule
    public function InstallFiles()
    {
       CopyDirFiles(
-         __DIR__ . "assets/scripts",
-         Application::getDocumentRoot() . "bitrix/js/" . $this->MODULE_ID . "/",
+         "D:\local_sites\bitrixtest.local\www\local\modules\kasianov.totop\install\assets\scripts\\",
+         "D:\local_sites\bitrixtest.local\www\bitrix\js\\" . $this->MODULE_ID . "\\",
          true,
          true
       );
 
       CopyDirFiles(
-         __DIR__ . "assets/styes",
-         Application::getDocumentRoot() . "bitrix/css/" . $this->MODULE_ID . "/",
+         "D:\local_sites\bitrixtest.local\www\local\modules\kasianov.totop\install\assets\styles\\",
+         "D:\local_sites\bitrixtest.local\www\bitrix\css\\" . $this->MODULE_ID . "\\",
          true,
          true
       );

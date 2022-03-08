@@ -29,6 +29,7 @@ class Main {
             true
          );
 
+         Asset::getInstance()->addJS("bitix");
       }
    }
 }
