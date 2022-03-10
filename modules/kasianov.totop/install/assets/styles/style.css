@@ -1,10 +1,10 @@
-#falbar_totop-button {
+#kasianov_totop-button {
     position: fixed;
     cursor: pointer;
     display: none;
 }
 
-#falbar_totop-button:before {
+#kasianov_totop-button:before {
     content: "";
     width: 0;
     height: 0;
