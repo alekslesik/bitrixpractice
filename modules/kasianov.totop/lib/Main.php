@@ -29,7 +29,11 @@ class Main {
             true
          );
 
-         Asset::getInstance()->addJS("bitix");
+        Asset::getInstance()->addJs("/bitrix/js/".$module_id."/jquery.min.js");
+        Asset::getInstance()->addJs("/bitrix/js/".$module_id."/script.min.js");
+        Asset::getInstance()->addCss("/bitrix/css/".$module_id."/style.min.css");
       }
+
+      false;
    }
 }

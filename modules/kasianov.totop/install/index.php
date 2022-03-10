@@ -176,6 +176,3 @@ class kasianov_totop extends CModule
    }
 
 }
-
-
-
